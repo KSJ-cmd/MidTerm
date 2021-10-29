@@ -9,6 +9,22 @@ bool Game::init(const char* title, int xpos,int ypos, int height, int width,int 
 
       if(m_pRenderer != 0){
         SDL_SetRenderDrawColor(m_pRenderer,0,0,0,255);
+
+        //기본그리기
+        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
+
+        m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer,pTempSurface);
+
+        SDL_FreeSurface(pTempSurface);
+
+        SDL_QueryTexture(m_pTexture,NULL,NULL,&m_sourceRectangle.w,&m_sourceRectangle.h);
+
+        m_destinaionRectangle.w = m_sourceRectangle.w;
+        m_destinaionRectangle.h = m_sourceRectangle.h;
+
+        m_destinaionRectangle.x = m_sourceRectangle.x = 0;
+        m_destinaionRectangle.y = m_sourceRectangle.y = 0;
+
       }
       else{return false;}
     }
@@ -25,6 +41,9 @@ bool Game::init(const char* title, int xpos,int ypos, int height, int width,int 
 void Game::update(){}
 void Game::render(){
   SDL_RenderClear(m_pRenderer);
+
+  SDL_RenderCopy(m_pRenderer,m_pTexture,&m_sourceRectangle,&m_destinaionRectangle);
+
   SDL_RenderPresent(m_pRenderer);
 }
 bool Game::running(){
