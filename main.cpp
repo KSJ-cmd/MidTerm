@@ -4,21 +4,23 @@
 
 const int WINDOW_X = 640;
 const int WINDOW_Y = 480;
+  
+int main(int argc, char* args[])
+{
+  if(Game::Instance()->init("MidTerm",100,100,WINDOW_X,WINDOW_Y,0)){
 
-Game* g_game = nullptr;
-
-  int main(int argc, char* args[])
-  {
-  g_game = new Game();
-  g_game->init("Setting up SDL 10/22",100,100,WINDOW_X,WINDOW_Y,0);
-
-  while(g_game->running()){
-    g_game->handleEvents();
-    g_game->update();
-    g_game->render();
-    SDL_Delay(100);
+    while(Game::Instance()->running()){
+      Game::Instance()->handleEvents();
+      Game::Instance()->update();
+      Game::Instance()->render();
+      SDL_Delay(100);
+    }
   }
-  g_game->clean();
+  else{
+    std::cout<<"game init fail"<<SDL_GetError()<<"\n";
+    return -1;
+  }
+  Game::Instance()->clean();
   return 0;
 
 }

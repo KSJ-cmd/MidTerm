@@ -1,5 +1,9 @@
+#include"Game.h"
 #include"GameObject.h"
 #include"TextureManager.h"
+
+
+Game* Game::s_pInstance = 0;
 
 void GameObject::load(int x, int y, int width, int height, std::string textureID){
   m_x =x;
