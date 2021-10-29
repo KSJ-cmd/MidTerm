@@ -16,6 +16,7 @@ Game* g_game = nullptr;
     g_game->handleEvents();
     g_game->update();
     g_game->render();
+    SDL_Delay(100);
   }
   g_game->clean();
   return 0;

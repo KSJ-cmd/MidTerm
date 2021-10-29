@@ -3,6 +3,8 @@
 
 #include"SDL.h"
 #include"SDL_image.h"
+#include"GameObject.h"
+#include"Player.h"
 #include"TextureManager.h"
 
 class Game{
@@ -22,6 +24,8 @@ public:
   SDL_Renderer* m_pRenderer;
   bool m_bRunning;
 
+  GameObject m_go;
+  Player m_player;
   
   int m_currentFrame;
 
