@@ -6,10 +6,17 @@
 #include"SDL.h"
 #include"SDL_image.h"
 
+
 class TextureManager{
 public:
-  TextureManager(){}
   ~TextureManager(){}
+
+  static TextureManager* Instance(){
+    if(s_pInstance == NULL){
+      s_pInstance = new TextureManager();
+    }
+    return s_pInstance;
+  }
 
   bool load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 
@@ -22,6 +29,9 @@ public:
   SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 private:
+  TextureManager(){}
+
+  static TextureManager* s_pInstance;
   std::map<std::string, SDL_Texture*> m_textureMap;
 };
 
